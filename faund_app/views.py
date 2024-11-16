@@ -219,8 +219,13 @@ def pagina_adocao(request):
     tipo_pet = request.GET.get('tipo_pet', '')
     estado = request.GET.get('estado', '')
 
+    # Selecionar pets apenas se algum filtro for ativado 
+    if not estado and not tipo_pet:
+        pets = []
+    else:
+        pets = Pet.objects.all()
+
     # Filtrar pets conforme o estado e tipo selecionados
-    pets = Pet.objects.all()
     if estado:
         pets = pets.filter(ong__estado=estado)
     if tipo_pet:
