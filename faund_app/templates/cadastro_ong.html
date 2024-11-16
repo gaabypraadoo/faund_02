@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Cadastro ONG</title>
+    <link rel="stylesheet" href="{% static 'css/cadastro_ONG.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <button class="botao_topo" type="button" onclick="location.href='{% url 'login' %}'">Login</button>
+            </div>
+        </section>
+        <hr>
+    </header>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <main class="form-container">
+        <form id="cadastro-form" method="POST" enctype="multipart/form-data" action="{% url 'cadastro_ong' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="imagem_perfil">Insira uma imagem para o seu perfil:</label>
+                <input type="file" id="imagem_perfil" name="imagem_perfil" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="ong_nome">Nome da ONG:</label>
+                <input type="text" id="ong_nome" name="nome_ong" required> <!-- Verifique o "name" -->
+            </div>
+            <div class="form-group">
+                <label for="data_criacao">Data de Criação:</label>
+                <input type="date" id="data_criacao" name="data_criacao" required>
+            </div>
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                {{ ong_form.estado }}
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" required>
+            </div>
+            <div class="form-group">
+                <label for="link_doacao">Link de Doação:</label>
+                <input type="url" id="link_doacao" name="link_doacao">
+            </div>
+            <div class="form-group">
+                <label for="instagram">Instagram:</label>
+                <input type="url" id="instagram" name="instagram">
+            </div>
+            <div class="form-group">
+                <label for="historia">História:</label>
+                <textarea id="historia" name="historia" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required oninput="formatarTelefone(this)">
+            </div>
+            <div class="form-group">
+                <label for="email_ong_id">E-mail:</label>
+                <input type="email" id="email_ong_id" name="email_ong" required> <!-- Verifique o "name" -->
+            </div>
+            <div class="form-group">
+                <label for="senha_ong">Senha:</label>
+                <input type="password" id="senha_ong" name="senha_ong" required>
+            </div>
+            {% comment %} <a href="{% url 'ong' %}" class="cadCheck">Cadastrar</a> {% endcomment %}
+            <button type="submit" class="cadCheck" href="ong">Cadastrar</button>
+        </form>
+    </main>
+
+    <footer class="rodape">
+        <p>Desenvolvido por: Gabrielly Prado</p>
+    </footer>
+
+    <script src="{% static 'js/cadastro.js' %}"></script>
+    
+    <script>
+        function formatarTelefone(telefoneInput) {
+            // Remove todos os caracteres não numéricos
+            const telefone = telefoneInput.value.replace(/\D/g, '');
+            
+            // Adiciona +55 no início e formata conforme o padrão
+            let resultado = '+55 ';
+            if (telefone.length > 2) {
+                resultado += '(' + telefone.substring(2, 4) + ') ';
+            }
+            if (telefone.length > 4) {
+                resultado += telefone.substring(4, 9) + '-';
+            }
+            if (telefone.length >= 9) {
+                resultado += telefone.substring(9, 13);
+            }
+        
+            // Define o valor formatado de volta no input
+            telefoneInput.value = resultado.trim();
+        
+            // Armazena o número sem formatação (sem o +55)
+            telefoneInput.dataset.telefone = telefone; // Armazena o número sem formatação
+        }
+        </script>        
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Pagina Inicial</title>
+    <link rel="stylesheet" href="{% static 'css/design_Login_2.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a class="botao_topo" onclick="window.location.href='{% url 'login' %}'">Login</a>
+                <a class="botao_topo" onclick="window.location.href='{% url 'lista_ong' %}'">ONG</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+
+    <section class="informacoes">
+        <h1>SISTEMA PARA ADOÇÃO DE PETS</h1>
+        <ol>
+            <li>
+                <strong>Faça seu login:</strong> Se você já possui uma conta, entre com seu usuário e senha. Caso não tenha uma conta, clique em "Cadastre-se" para criar uma nova.
+            </li>
+            <li>
+                <strong>Cadastre-se como ONG ou Tutor:</strong> Escolha o tipo de cadastro que deseja. Se você representa uma instituição de proteção animal, cadastre-se como ONG. Se deseja adotar, cadastre-se como Tutor.
+            </li>
+            <li>
+                <strong>Explore as ONGs parceiras:</strong> Acesse a lista de ONGs parceiras do site. Para isso, clique no botão "ONG" para conhecer as instituições que trabalham pelo bem-estar dos animais.
+            </li>
+            <li>
+                <strong>Encontre seu novo amigo:</strong> Navegue pela página de adoção para ver os pets disponíveis. Use os filtros para encontrar um pet que combine com você, e entre em contato com a ONG responsável.
+            </li>
+        </ol>
+    </section>
+
+    <p class="frase"><strong><em>Ao adotar um animal, você não só oferece a ele uma nova chance de ter uma vida segura e feliz, como também participa da missão de resgatar um ser que precisa de proteção e cuidado.</em></p>
+
+    <footer class="rodape">
+        <p>Desenvolvido por: Gabrielly Prado</p>
+    </footer>
+
+</body>
+</html>

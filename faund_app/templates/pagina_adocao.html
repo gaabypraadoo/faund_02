@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Página de Adoção</title>
+    <link rel="stylesheet" href="{% static 'css/adocao.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a class="botao_topo" href="{% url 'tutor' %}">Perfil</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+
+    <main>
+        <section class="filtro-adocao">
+            <h2>Encontre um Pet para Adoção</h2>
+            <form method="GET" action="{% url 'pagina_adocao' %}">
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    {{ tutor_form.estado }}
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_pet">Tipo de Pet:</label>
+                    <select name="tipo_pet" id="tipo_pet">
+                        <option value="">Todos</option>
+                        <option value="gato" {% if tipo_pet == "gato" %}selected{% endif %}>Gato</option>
+                        <option value="cachorro" {% if tipo_pet == "cachorro" %}selected{% endif %}>Cachorro</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="buscar">Buscar</button>
+            </form>
+        </section>
+
+        <section class="lista-pets">
+            <h3>Pets Disponíveis para Adoção</h3>
+            <div class="pets-container">
+                {% for pet in pets %}
+                    <div class="pet-card">
+                        <div class="pet-info">
+                            <h4>{{ pet.nome }}</h4>
+                            {% if pet.imagem_perfil %}
+                            <img  class="pet-image" src="{{ pet.imagem_perfil.url }}" alt="Imagem do Pet {{ pet.nome }}">
+                            {% endif %}
+                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+                            <p><strong>Idade:</strong> {{ pet.idade }}</p>
+                            <p><strong>Porte:</strong> {{ pet.porte }}</p>
+                            <p><strong>Tipo de Pet:</strong> {{ pet.tipo_pet }}</p>
+                        </div>
+                    <a href="{% url 'perfil_pet'%}" class="botao_topo">Quero adotar</a>
+                    </div>
+                {% empty %}
+                    <p>Nenhum pet encontrado com os filtros selecionados.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <script src="{% static 'js/adocao.js' %}"></script>
+</body>
+</html>

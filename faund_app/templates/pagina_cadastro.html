@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Cadastro Check</title>
+    <link rel="stylesheet" href="{% static 'css/design_Cadastro.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <button class="botao_topo" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            </div>
+        </section>
+        <hr>
+    </header>
+
+    <main class="container_check">
+        <form id="check">
+            <div>
+                <input type="radio" id="ONG" name="userType" class="ONG">
+                <label for="ONG">Sou ONG</label>
+                <input type="radio" id="tutor" name="userType" class="tutor">
+                <label for="tutor"> Sou Tutor</label>
+            </div>
+            <div>
+                <button class="botao_continuar" type="button" onclick="redirectUser()">Continuar...</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const urlCadastroOng = "{% url 'cadastro_ong' %}";
+        const urlCadastroTutor = "{% url 'cadastro_tutor' %}";
+    </script>
+    <script src="{% static 'js/usuario.js' %}"></script>
+    
+</body>
+</html>

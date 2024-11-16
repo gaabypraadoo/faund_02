@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Cadastro de Pet</title>
+    <link rel="stylesheet" href="{% static 'css/cadastro_pet.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a href="{% url 'ong' %}" class="botao_topo">Perfil</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+    <main class="form-container">
+        <h1>Cadastro de Pet</h1>
+        <form id="cadastro-pet-form" method="post" enctype="multipart/form-data" action="{% url 'cadastro_pet' %}">
+            {% csrf_token %}    
+            <div class="form-group">
+                <label for="imagem_perfil">Insira uma imagem para o perfil do pet:</label>
+                <input type="file" id="imagem_perfil" name="imagem_perfil" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome do Pet:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="idade">Idade do Pet:</label>
+                <input type="text" id="idade" name="idade" required>
+            </div>
+            <div class="form-group">
+                <label for="data_ong">Data que chegou na ONG:</label>
+                <input type="date" id="data_ong" name="data_ong" required>
+            </div>
+            <div class="form-group">
+                <label for="raca">Raça:</label>
+                <input type="text" id="raca" name="raca" required>
+            </div>
+            <div class="form-group">
+                <label for="porte">Porte Físico:</label>
+                <input type="text" id="porte" name="porte" required>
+            </div>
+            <div class="form-group">
+                <label for="pelagem">Pelagem do Pet:</label>
+                <input type="text" id="pelagem" name="pelagem" required>
+            </div>
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="">Selecione</option>
+                    <option value="Feminino">Fêmea</option>
+                    <option value="Masculino">Macho</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipo_pet">Tipo de Pet:</label>
+                <select id="tipo_pet" name="tipo_pet" required>
+                    <option value="">Selecione</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Cachorro">Cachorro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="historia">História:</label>
+                <textarea id="historia" name="historia" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="cadCheck">Cadastrar</button>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        </form>
+    </main>
+</body>
+</html>

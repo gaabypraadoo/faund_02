@@ -1,0 +1,137 @@
+/* Reset básico */
+body, * {
+    margin: 0;
+    padding: 0; 
+    text-align: center;   
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+}
+
+/* Estilos para o container principal */
+main {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px; /* Espaço entre o cabeçalho e o conteúdo */
+}
+
+.container_topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.botao_topo {
+    color: white;
+    background-color: orange;
+    border-color: orange;
+    margin-top: 10px;
+    padding: 13px;
+    border-radius: 7%;
+    height: 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logo {
+    width: 100px;  
+    height: auto;  
+    object-fit: contain; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilos da seção de filtro */
+.filtro-adocao {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filtro-adocao h2 {
+    color: orange;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group select, .form-group button {
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Botão de filtro estilizado */
+.buscar {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buscar:hover {
+    background-color: #e69500;
+}
+
+/* Estilos da lista de pets */
+.lista-pets {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.pets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pet-card {
+    width: 250px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.pet-imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.pet-info {
+    padding: 15px;
+}
+
+.pet-info h4 {
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.pet-info p {
+    margin: 5px 0;
+    color: #555;
+}

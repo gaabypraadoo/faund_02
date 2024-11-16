@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Perfil do Tutor</title>
+    <link rel="stylesheet" href="{% static 'css/perfil_tutor.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}">
+                <img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+                <div>
+                    <a class="botao_topo" href="{% url 'pagina_adocao' %}">Adotar um Pet</a>
+                    <form action="{% url 'pagina_inicial' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="botao_topo">Sair</button>
+                    </form>
+                </div>
+        </section>
+        <hr>
+    </header>
+
+    <main class="perfil-container">
+        <h1>Olá, {{ tutor.nome_tutor }}!</h1>
+        <img src="{{ tutor.imagem_perfil.url }}" alt="Imagem de perfil" class="perfil-img">
+        
+        <p><strong>Nome:</strong> {{ tutor.nome_tutor }}</p>
+        <p><strong>Data de Nascimento:</strong> {{ tutor.data_nascimento }}</p>
+        <p><strong>Cidade:</strong> {{ tutor.cidade }}</p>
+        <p><strong>Estado:</strong> {{ tutor.estado }}</p>
+        <p><strong>Endereço:</strong> {{ tutor.endereco }}</p>
+        <p><strong>Telefone:</strong> {{ tutor.telefone }}</p>
+        <p><strong>E-mail:</strong> {{ tutor.email_tutor }}</p>
+    </main>
+
+    {% comment %} <footer class="rodape">
+        <p>Desenvolvido por: Gabrielly Prado</p>
+    </footer> {% endcomment %}
+</body>
+</html>

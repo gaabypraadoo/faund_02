@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>ONG's</title>
+    <link rel="stylesheet" href="{% static 'css/lista_ong.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a href="{% url 'pagina_inicial' %}" class="botao_topo">Página Inicial</a>
+                <a href="{% url 'login' %}" class="botao_topo">Login</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+    <div class="container_ong">
+        <table>
+            <tbody>
+                {% for ong in ongs %}
+                <tr>
+                    <td>
+                        <img src="{{ ong.imagem_perfil.url }}" alt="Imagem da ONG" style="width: 100px; height: auto;">
+                    </td>
+                    <td>
+                        <strong>Nome:</strong> {{ ong.nome_ong }}<br>
+                        <strong>E-mail:</strong> {{ ong.email_ong }}<br>
+                        <strong>História:</strong> {{ ong.historia }}<br>
+                        <strong>Link para doação:</strong>{{ ong.link_doacao }}<br>
+                    </td>
+                    <td>
+                        <a href="https://wa.me/{{ ong.telefone|cut:' '|cut:'-'|cut:'('|cut:')'|cut:'+' }}" target="_blank">
+                            <img src="{% static 'imagens/wpp.png' %}" style="width: 30px; height: 30px;">
+                        </a>
+                    </td>                                                                              
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">Nenhuma ONG cadastrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer class="rodape">
+    </footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Pets Cadastrados</title>
+    <link rel="stylesheet" href="{% static 'css/pets_cadastrados.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a href="{% url 'ong' %}" class="botao_topo">Perfil</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+    <main class="container_pets">
+        <div class="pet-box">
+            {% if pets %}
+                <ul class="pet-list">
+                    {% for pet in pets %}
+                        <li class="pet-item">
+                            <h2>{{ pet.nome }}</h2> {% if pet.imagem_perfil %}<img src="{{ pet.imagem_perfil.url }}" alt="Imagem do Pet {{ pet.nome }}">{% endif %}
+                            <p><strong>Idade:</strong> {{ pet.idade }}</p>
+                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+                            <p><strong>Porte:</strong> {{ pet.porte }}</p>
+                            <p><strong>Pelagem:</strong> {{ pet.pelagem }}</p>
+                            <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
+                            <p><strong>Tipo de Pet:</strong> {{ pet.tipo_pet }}</p>
+                            <p><strong>História:</strong> {{ pet.historia }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Sem Pets cadastrados</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

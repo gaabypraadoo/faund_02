@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .topo section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .botao_login, .botao_ong {
+        margin-top: auto;
+    }
+
+    .pagina_inicial {
+        padding: auto;
+    }
+}
+
+.container_topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.container_login {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.botao_topo {
+    color: white;
+    background-color: orange;
+    border-color: orange;
+    margin-top: 10px;
+    padding: 13px;
+    border-radius: 7%;
+    height: 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.login {
+    border-style: solid;
+    border-width: 2px;
+    color: rgba(128, 128, 128, 0.407);
+    padding: 20px;
+    border-radius: 7%;
+}
+
+.logo {
+    width: 100px;  
+    height: auto;  
+    object-fit: contain; 
+    padding: 0;
+    margin: 0;
+}
+
+.rodape {
+    color: white;
+    background-color: orangered;
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    margin-bottom: auto;
+    display: flex;
+    align-items: center;
+}
+
+.rodape p {
+    margin-left: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: orange;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.informacoes {
+    max-width: 600px;
+    margin: 50px auto; /* Centraliza horizontalmente e ajusta o espaçamento superior */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.informacoes ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+.informacoes li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.frase {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: black;
+    font-style: italic;
+    text-align: right;
+    max-width: 200px;
+}

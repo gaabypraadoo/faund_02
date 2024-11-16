@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/design_Login.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a class="botao_topo" href="{% url 'lista_ong' %}">ONG</a>
+                <a class="botao_topo" href="{% url 'pagina_inicial' %}">Página Inicial</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+    <div class="container_login">
+        <div>
+            <img class="gato" src="{% static 'imagens/gato_login.png' %}" alt="Gato">
+        </div>
+        <div id="form-container">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div>
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" class="input-username" required>
+                </div>
+                <div>
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" class="input-password" required>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn-entrar">Entrar</button>
+                    <a href="{% url 'pagina_cadastro' %}" class="cadCheck">Não possui uma conta? Cadastre-se!</a>
+                </div>
+            </form>
+        </div>
+        <img class="cachorro" src="{% static 'imagens/cachorro_login.png' %}" alt="Cachorro">
+    </div>
+    <footer class="rodape">
+        <p>Desenvolvido por: Gabrielly Prado</p>
+    </footer>
+    <script src="{% static 'js/logica_login.js' %}" defer></script>
+</body>
+</html>

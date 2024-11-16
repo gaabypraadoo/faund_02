@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Cadastro Tutor</title>
+    <link rel="stylesheet" href="{% static 'css/cadastro_tutor.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <button class="botao_topo" type="button" onclick="location.href='{% url 'login' %}'">Login</button>
+            </div>
+        </section>
+        <hr>
+    </header>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <main class="form-container">
+        <form id="cadastro-tutor-form" method="post" enctype="multipart/form-data" action="{% url 'cadastro_tutor' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="imagem_perfil">Insira uma imagem para o seu perfil:</label>
+                <input type="file" id="imagem_perfil" name="imagem_perfil" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="nome_tutor">Nome:</label>
+                <input type="text" id="nome_tutor" name="nome_tutor" required>
+            </div>
+            <div class="form-group">
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
+            </div>
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                {{ tutor_form.estado }}
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required oninput="formatarTelefone(this)">
+            </div>
+            <div class="form-group">
+                <label for="email_tutor">E-mail:</label>
+                <input type="email" id="email_tutor" name="email_tutor" required>
+            </div>
+            <div class="form-group">
+                <label for="senha_tutor">Senha:</label>
+                <input type="password" id="senha_tutor" name="senha_tutor" required>
+            </div>
+            {% comment %} <a href="{% url 'tutor' %}" class="cadCheck">Cadastrar</a> {% endcomment %}
+            <button type="submit" class="cadCheck" href="tutor">Cadastrar</button>
+        </form>
+    </main>
+
+    <footer class="rodape">
+        <p>Desenvolvido por: Gabrielly Prado</p>
+    </footer>
+    <script src="{% static 'js/cadastro.js' %}"></script>
+    <script>
+        function formatarTelefone(telefoneInput) {
+            // Remove todos os caracteres não numéricos
+            const telefone = telefoneInput.value.replace(/\D/g, '');
+            
+            // Adiciona +55 no início e formata conforme o padrão
+            let resultado = '+55 ';
+            if (telefone.length > 2) {
+                resultado += '(' + telefone.substring(2, 4) + ') ';
+            }
+            if (telefone.length > 4) {
+                resultado += telefone.substring(4, 9) + '-';
+            }
+            if (telefone.length >= 9) {
+                resultado += telefone.substring(9, 13);
+            }
+        
+            // Define o valor formatado de volta no input
+            telefoneInput.value = resultado.trim();
+        
+            // Armazena o número sem formatação (sem o +55)
+            telefoneInput.dataset.telefone = telefone; // Armazena o número sem formatação
+        }
+        </script>  
+</body>
+</html>
+
+

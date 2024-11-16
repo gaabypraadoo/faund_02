@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/design_Login.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a class="botao_topo" href="{% url 'pagina_adocao' %}">Adoções</a>
+            </div>
+        </section>
+        <hr>
+    </header>
+    <section class="perfil-container">
+        <h1>Perfil do Pet</h1>
+        
+        <div class="pet-info">
+            <img src="{{ pet.imagem_perfil.url }}" alt="{{ pet.nome }}" class="pet-img">
+            <p><strong>Nome:</strong> {{ pet.nome }}</p>
+            <p><strong>Idade:</strong> {{ pet.idade }}</p>
+            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+            <p><strong>História:</strong> {{ pet.historia }}</p>
+            <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
+            <p><strong>Tipo de Pet:</strong> {{ pet.tipo_pet }}</p>
+            <p><strong>Porte:</strong> {{ pet.porte }}</p>
+            <p><strong>Pelagem:</strong> {{ pet.pelagem }}</p>
+        </div>
+
+        <div class="contato-ong">
+            <h2>Contato com a ONG</h2>
+            <p><strong>Nome da ONG:</strong> {{ ong.nome_ong }}</p>
+            <p><strong>WhatsApp:</strong> 
+                <a href="https://wa.me/{{ telefone_whatsapp }}" target="_blank">
+                    <img src="{% static 'imagens/whatsapp-icon.png' %}" alt="WhatsApp" style="width: 30px; height: 30px;">
+                    Iniciar conversa
+                </a>
+            </p>
+        </div>
+    </section>
+</body>
+</html>

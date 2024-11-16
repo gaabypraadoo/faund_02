@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil da ONG</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/perfil_ong.css' %}">
+</head>
+<body>
+    <header>
+        <section class="container_topo">
+            <a href="{% url 'pagina_inicial' %}"><img class="logo" src="{% static 'imagens/logo.png' %}" alt="Logo_Faund"></a>
+            <div>
+                <a class="botao_topo" href="{% url 'cadastro_pet' %}">Cadastrar Pet</a>
+                <a class="botao_topo" href="{% url 'pets_cadastrados' %}">Pets Cadastrados</a>
+                <form action="{% url 'pagina_inicial' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="botao_topo">Sair</button>
+                </form>
+            </div>
+        </section>
+        <hr>
+    </header>
+
+    <main class="perfil-container">
+        <h1>Bem-vindo(a), {{ ong.nome_ong }}!</h1>
+        <img src="{{ ong.imagem_perfil.url }}" alt="Imagem de perfil" class="perfil-img">
+
+        <p><strong>Nome da ONG:</strong> {{ ong.nome_ong }}</p>
+        <p><strong>Data de Criação:</strong> {{ ong.data_criacao }}</p>
+        <p><strong>Cidade:</strong> {{ ong.cidade }}</p>
+        <p><strong>Estado:</strong> {{ ong.estado }}</p>
+        <p><strong>Endereço:</strong> {{ ong.endereco }}</p>
+        <p><strong>Link de Doação:</strong> <a href="{{ ong.link_doacao }}" target="_blank">{{ ong.link_doacao }}</a></p>
+        <p><strong>Instagram:</strong> <a href="{{ ong.instagram }}" target="_blank">{{ ong.instagram }}</a></p>
+        <p><strong>História:</strong> {{ ong.historia }}</p>
+        <p><strong>Telefone:</strong> {{ ong.telefone }}</p>
+        <p><strong>E-mail:</strong> {{ ong.email_ong }}</p>
+
+    </main>
+
+    {% comment %} <footer class="rodape">
+        <p>Desenvolvido por: Gabrielly Prado</p>
+    </footer> {% endcomment %}
+</body>
+</html> 

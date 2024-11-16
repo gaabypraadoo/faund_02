@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .topo section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pagina_inicial {
+        padding: auto;
+    }
+}
+
+.container_topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.botao_topo {
+    color: white;
+    background-color: orange;
+    border-color: orange;
+    margin-top: 10px;
+    padding: 13px;
+    border-radius: 7%;
+    height: 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logo {
+    width: 100px;  
+    height: auto;  
+    object-fit: contain; 
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filtro-adocao {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filtro-adocao h2 {
+    color: orange;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group select, .form-group button {
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Botão de filtro estilizado */
+button[type="submit"] {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #e69500;
+}
+
+/* Estilos da lista de pets */
+.lista-pets {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.pets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pet-card {
+    width: 250px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.pet-image {
+    width: 100%; /* Faz com que a imagem ocupe toda a largura disponível do card */
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 150px; /* Limita a altura da imagem */
+    object-fit: cover; /* Faz a imagem se ajustar ao espaço sem distorção */
+}
+
+.pet-info {
+    padding: 15px;
+}
+
+.pet-info h4 {
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.pet-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .container_topo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .botao_topo {
+        margin-top: 10px;
+    }
+}
