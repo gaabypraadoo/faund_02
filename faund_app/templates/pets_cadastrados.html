@@ -31,7 +31,14 @@
                             <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
                             <p><strong>Tipo de Pet:</strong> {{ pet.tipo_pet }}</p>
                             <p><strong>História:</strong> {{ pet.historia }}</p>
+
+                            <label>
+                                <input type="checkbox" name="adotado_{{ pet.id }}" value="1" {% if pet.adotado %}checked{% endif %}>
+                                Adotado
+                            </label>
                         </li>
+                </ul>
+                <button type="submit" style="background-color: orange; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Salvar</button>
                     {% endfor %}
                 </ul>
             {% else %}

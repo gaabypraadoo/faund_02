@@ -46,6 +46,7 @@ class Pet(models.Model):
     sexo = models.CharField(max_length=10)
     tipo_pet = models.CharField(max_length=50)
     historia = models.TextField()
+    adotado = models.BooleanField(default=False)
 
     TIPO_CHOICES = [
         ('todos', 'Todos'),

@@ -8,6 +8,8 @@ from .models import ONG, Tutor, Pet
 from localflavor.br.br_states import STATE_CHOICES
 from django.contrib import messages
 from django.contrib.auth.models import Group
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 def pagina_inicial(request):
     return render(request, 'pagina_inicial.html')
@@ -223,7 +225,7 @@ def pagina_adocao(request):
     if not estado and not tipo_pet:
         pets = []
     else:
-        pets = Pet.objects.all()
+        pets = Pet.objects.filter(adotado=False)
 
     # Filtrar pets conforme o estado e tipo selecionados
     if estado:
@@ -237,6 +239,7 @@ def pagina_adocao(request):
         'tipo_pet': tipo_pet,
         'estado': estado,
     }
+    
     return render(request, 'pagina_adocao.html', context)
 
 @login_required
@@ -247,12 +250,25 @@ def lista_ong(request):
 @login_required
 def pets_cadastrados(request):
     print("lista de pets cadastrados")
+
     if request.user.is_authenticated and hasattr(request.user, 'ong'):
-        # Filtra os pets que pertencem à ONG do usuário logado
         ong = request.user.ong
-        pets = Pet.objects.filter(ong=ong)
+        pets = Pet.objects.filter(ong=ong)  # Filtra os pets da ONG do usuário logado
     else:
         pets = []
+
+    if request.method == "POST":
+        for pet in pets:
+            # Verifica se o checkbox foi enviado no POST
+            adotado = request.POST.get(f'adotado_{pet.id}') == '1'
+            # Atualiza o status de adoção
+            if pet.adotado != adotado:
+                pet.adotado = adotado
+                pet.save()
+
+        # Redireciona para evitar reenvio do formulário ao atualizar a página
+        return HttpResponseRedirect(reverse('pets_cadastrados'))
+
     return render(request, 'pets_cadastrados.html', {'pets': pets})    
 
 # @login_required

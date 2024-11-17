@@ -71,7 +71,7 @@ class Pet_form(forms.ModelForm):
     class Meta:
         model = Pet
         fields = [
-            'imagem_perfil','nome', 'idade', 'data_ong', 'raca', 'porte', 'pelagem', 'sexo', 'tipo_pet', 'historia'
+            'imagem_perfil','nome', 'idade', 'data_ong', 'raca', 'porte', 'pelagem', 'sexo', 'tipo_pet', 'historia', 'adotado'
         ]
         labels = {
             'nome': 'Nome do Pet',
@@ -83,4 +83,5 @@ class Pet_form(forms.ModelForm):
             'sexo': 'Sexo',
             'tipo_pet': 'Tipo',
             'historia': 'História',
+            'adotado': 'Adotado'
         }

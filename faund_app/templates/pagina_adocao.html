@@ -48,14 +48,14 @@
                         <div class="pet-info">
                             <h4>{{ pet.nome }}</h4>
                             {% if pet.imagem_perfil %}
-                            <img  class="pet-image" src="{{ pet.imagem_perfil.url }}" alt="Imagem do Pet {{ pet.nome }}">
+                            <img src="{{ pet.imagem_perfil.url }}" alt="Imagem do Pet {{ pet.nome }}" style="width: 150px; height: 150px; object-fit: cover;">
                             {% endif %}
                             <p><strong>Raça:</strong> {{ pet.raca }}</p>
                             <p><strong>Idade:</strong> {{ pet.idade }}</p>
                             <p><strong>Porte:</strong> {{ pet.porte }}</p>
                             <p><strong>Tipo de Pet:</strong> {{ pet.tipo_pet }}</p>
                         </div>
-                    <a href="{% url 'perfil_pet'%}" class="botao_topo">Quero adotar</a>
+                    <a href="{% url 'perfil_pet'%}" style="background-color: orange; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Quero adotar</a>
                     </div>
                 {% empty %}
                     <p>Nenhum pet encontrado com os filtros selecionados.</p>
