@@ -55,7 +55,7 @@
                             <p><strong>Porte:</strong> {{ pet.porte }}</p>
                             <p><strong>Tipo de Pet:</strong> {{ pet.tipo_pet }}</p>
                         </div>
-                    <a href="{% url 'perfil_pet'%}" style="background-color: orange; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Quero adotar</a>
+                    <a href="{% url 'perfil_pet' pet.id%}" style="background-color: orange; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Quero adotar</a>
                     </div>
                 {% empty %}
                     <p>Nenhum pet encontrado com os filtros selecionados.</p>

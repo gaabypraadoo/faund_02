@@ -109,8 +109,8 @@ def cadastro_pet(request):
     return render(request, 'cadastro_pet.html', {'pet_form': pet_form})
 
 @login_required
-def pet(request):
-    pet = get_object_or_404(Pet)
+def pet(request, pet_id):
+    pet = get_object_or_404(Pet, id=pet_id)
     ong = pet.ong  # Acessando a ONG do pet
     telefone_whatsapp = f"55{ong.telefone.replace(' ', '').replace('-', '')}"  # Formatação do número de telefone da ONG
 
@@ -269,7 +269,23 @@ def pets_cadastrados(request):
         # Redireciona para evitar reenvio do formulário ao atualizar a página
         return HttpResponseRedirect(reverse('pets_cadastrados'))
 
-    return render(request, 'pets_cadastrados.html', {'pets': pets})    
+    return render(request, 'pets_cadastrados.html', {'pets': pets})  
+
+@login_required
+def pet_adotado(request):
+    if request.method == 'POST':
+        pets = Pet.objects.filter(ong=request.user.ong)  # Filtra os pets da ONG logada
+        for pet in pets:
+            # Nome esperado no formulário
+            adotado_key = f"adotado_{pet.id}"
+            
+            # Atualiza o campo 'adotado' no banco de dados
+            if adotado_key in request.POST:
+                pet.adotado = True
+            else:
+                pet.adotado = False
+            pet.save()
+        return redirect('pets_cadastrados')  
 
 # @login_required
 # def ong(request):

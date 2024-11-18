@@ -20,6 +20,8 @@
     <main class="container_pets">
         <div class="pet-box">
             {% if pets %}
+            <form method="POST" action="{% url 'pet_adotado' %}">
+                {% csrf_token %}
                 <ul class="pet-list">
                     {% for pet in pets %}
                         <li class="pet-item">
@@ -39,7 +41,8 @@
                         </li>
                 </ul>
                 <button type="submit" style="background-color: orange; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Salvar</button>
-                    {% endfor %}
+            </form>
+                {% endfor %}
                 </ul>
             {% else %}
                 <p>Sem Pets cadastrados</p>
